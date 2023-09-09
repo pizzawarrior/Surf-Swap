@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  <title>Surfboard List</title>
+{% endblock title %}
+
+{% block content %}
+<main>
+    <div>
+        <h1>My Surfboards</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Brand</th>
+                    <th>Model</th>
+                    <th>Style</th>
+                    <th>Currently Available</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for surfboard in surfboards %}
+                <tr>
+                    <td>{{ surfboard.brand }}</td>
+                    <td>{{ surfboard.model }}</td>
+                    <td>{{ surfboard.style }}</td>
+                    <td>{{ surfboard.currently_available|yesno }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</main>
+
+
+
+
+{% endblock content %}

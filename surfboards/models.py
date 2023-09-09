@@ -23,6 +23,7 @@ class Surfboard(models.Model):
     fin_system = models.CharField(max_length=50)
     image = models.URLField(blank=True)
     currently_available = models.BooleanField(default=False)
+    description = models.CharField(max_length=1000)
     owner = models.ForeignKey(
         User,
         related_name='surfboards',

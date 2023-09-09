@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Create Surfboard</title>
+{% endblock title %}
+
+{% block content %}
+<main>
+    <div>
+        <h1>Add Surfboard</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p}}
+            <button>Add</button>
+        </form>
+    </div>
+</main>
+
+
+{% endblock content %}
