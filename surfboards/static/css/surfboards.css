@@ -1,0 +1,22 @@
+
+
+
+/* LIST PAGE */
+
+.list-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 25%);
+    justify-content: space-around;
+    text-align: center;
+    margin-top: 3rem;
+  }
+
+  .list-img{
+    height: 20rem
+  }
+
+
+  /* DETAIL PAGE */
+  .detail-img {
+    height: 40rem;
+  }
