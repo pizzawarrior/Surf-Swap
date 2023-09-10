@@ -7,11 +7,11 @@
 
 {% block content %}
 <section class="detail-page-body">
-    <h1 id="detail-surfboard-title">{{ surfboard.brand }}{{ surfboard.model }}{{surfboard.volume}}</h1>
-    <img class="detail-img" src="{{ surfboard.image }}">
-    <p><a href="{% url 'surfboard_update' %}">Update</a></p>
-    <p><a href="{% url 'surfboard_delete' %}">Delete</a></p>
-    <p>{{ surfboard.description }}</p>
+    <h1 id="detail-surfboard-title">{{ surfboard.brand }} - {{ surfboard.model }} - {{surfboard.volume}}L</h1>
+    {% if user == surfboard.owner %}
+    <p><a href="{% url 'edit_surfboard' surfboard.id %}">Update</a></p>
+    <p><a href="{% url 'delete_surfboard' surfboard.id %}">Delete</a></p>
+    {% endif %}
 
     <main>
         <table>
@@ -44,6 +44,8 @@
                 </tr>
             </tbody>
         </table>
+        <p>{{ surfboard.description }}</p>
+        <img class="detail-img" src="{{ surfboard.image }}">
     </main>
 
 

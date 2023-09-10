@@ -27,7 +27,7 @@
                     <td>{{ surfboard.brand }}</td>
                     <td>{{ surfboard.model }}</td>
                     <td>{{ surfboard.style }}</td>
-                    <td><a href="{% url 'surfboard_detail' %}">Detail</a></td>
+                    <td><a href="{% url 'surfboard_detail' surfboard.id %}">Detail</a></td>
                     <td>{{ surfboard.currently_available|yesno }}</td>
                 </tr>
                 {% endfor %}

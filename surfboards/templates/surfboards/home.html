@@ -16,11 +16,12 @@
                   <th>Model</th>
                   <th>Style</th>
                   <th>Volume</th>
+                  {% if user.is_authenticated %}
                   <th>Owner</th>
                   <th>Currently Available</th>
-                  {% if user.is_authenticated %}
                   <th>Board Details</th>
                   {% endif %}
+                  <th>Image</th>
               </tr>
           </thead>
           <tbody>
@@ -30,11 +31,12 @@
                   <td>{{ surfboard.model }}</td>
                   <td>{{ surfboard.style }}</td>
                   <td>{{ surfboard.volume }}</td>
-                  <td>{{ surfboard.currently_available|yesno }}</td>
-                  <td>{{ surfboard.owner }}</td>
                   {% if user.is_authenticated %}
+                  <td>{{ surfboard.owner }}</td>
+                  <td>{{ surfboard.currently_available|yesno }}</td>
                   <td><a href="{% url 'surfboard_detail' surfboard.id %}">Detail</a></td>
                   {% endif %}
+                  <td>{{ surfboard.image }}</td>
               </tr>
               {% endfor %}
           </tbody>

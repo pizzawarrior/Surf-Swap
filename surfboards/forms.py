@@ -1,5 +1,6 @@
 from django.forms import ModelForm
-from surfboards.models import Surfboard, Reservation
+from django import forms
+from surfboards.models import Surfboard
 
 # To be used with the view 'create_surfboard'
 class SurfboardForm(ModelForm):
@@ -17,7 +18,13 @@ class SurfboardForm(ModelForm):
             "fin_style",
             "fin_system",
             "image",
-            "currently_available",
             "description"
-
             )
+
+        # Use widgets for dropdowns. See .models for how these were setup
+        widgets = {
+            'type': forms.Select(attrs={'class': 'form-control'}),
+            'style': forms.Select(attrs={'class': 'form-control'}),
+            'fin_style': forms.Select(attrs={'class': 'form-control'}),
+            'fin_system': forms.Select(attrs={'class': 'form-control'}),
+        }

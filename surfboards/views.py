@@ -14,7 +14,7 @@ def create_surfboard(request):
             surfboard = form.save(False)
             surfboard.owner = request.user
             surfboard.save()
-            return redirect("surfboard_list")
+            return redirect("my_surfboards")
     else:
         form = SurfboardForm()
     context = {"form": form}
