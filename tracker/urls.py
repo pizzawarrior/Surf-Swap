@@ -19,11 +19,11 @@ from django.urls import path, include
 from django.shortcuts import redirect
 
 def redirect_to_surfboard_list(request):
-    return redirect("home")
+    return redirect('surfboard_list')
 
 urlpatterns = [
+    path('', redirect_to_surfboard_list, name="home"),
     path('admin/', admin.site.urls),
-    path('', redirect_to_surfboard_list, name="home-page"),
     path('surfboards/', include('surfboards.urls')),
     path('accounts/', include('accounts.urls'))
 ]

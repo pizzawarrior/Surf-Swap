@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from surfboards.models import Surfboard, Reservation
+from surfboards.models import Surfboard
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from surfboards.forms import SurfboardForm
@@ -14,7 +14,7 @@ def create_surfboard(request):
             surfboard = form.save(False)
             surfboard.owner = request.user
             surfboard.save()
-            return redirect("home")
+            return redirect("surfboard_list")
     else:
         form = SurfboardForm()
     context = {"form": form}
@@ -39,7 +39,7 @@ def my_surfboards(request):
     return render(request, 'surfboards/my_list.html', context)
 
 
-# Show surfboard details: (login required)
+# Show surfboard detail: (login required)
 @login_required(login_url="/accounts/login/")
 def surfboard_detail(request, id):
     surfboard = get_object_or_404(Surfboard, id=id)
@@ -47,3 +47,29 @@ def surfboard_detail(request, id):
         'surfboard': surfboard
     }
     return render(request, 'surfboards/detail.html', context)
+
+
+# Update surfboard details:
+@login_required(login_url="/accounts/login/")
+def edit_surfboard(request, id):
+    surfboard = get_object_or_404(Surfboard, id=id)
+    if request.method == 'POST':
+        form = SurfboardForm(request.POST, instance = surfboard)
+        if form.is_valid():
+            form.save()
+            return redirect('surfboard_detail', id=id)
+    else:
+        form = SurfboardForm(instance = surfboard)
+    context = {
+        'surfboard': surfboard,
+        'form': form,
+        }
+    return render(request, 'surfboards/update.html', context)
+
+
+# Delete surfboard
+@login_required(login_url="/accounts/login/")
+def delete_surfboard(request, id):
+    surfboard = get_object_or_404(Surfboard, id=id)
+    surfboard.delete()
+    return redirect('my_surfboards')

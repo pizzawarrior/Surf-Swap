@@ -9,6 +9,9 @@
 <main>
     <div>
         <h1>My Surfboards</h1>
+        <p>
+            <a href="{% url 'create_surfboard' %}">Add a New Board</a>
+        </p>
         <table>
             <thead>
                 <tr>
@@ -24,6 +27,7 @@
                     <td>{{ surfboard.brand }}</td>
                     <td>{{ surfboard.model }}</td>
                     <td>{{ surfboard.style }}</td>
+                    <td><a href="{% url 'surfboard_detail' %}">Detail</a></td>
                     <td>{{ surfboard.currently_available|yesno }}</td>
                 </tr>
                 {% endfor %}

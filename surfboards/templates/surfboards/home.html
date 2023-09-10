@@ -8,9 +8,37 @@
 {% block content %}
 <main>
     <div>
-        <h1>
-
-        </h1>
+        <h1>Welcome to Surf Swap!</h1>
+        <table>
+          <thead>
+              <tr>
+                  <th>Brand</th>
+                  <th>Model</th>
+                  <th>Style</th>
+                  <th>Volume</th>
+                  <th>Owner</th>
+                  <th>Currently Available</th>
+                  {% if user.is_authenticated %}
+                  <th>Board Details</th>
+                  {% endif %}
+              </tr>
+          </thead>
+          <tbody>
+              {% for surfboard in surfboards %}
+              <tr>
+                  <td>{{ surfboard.brand }}</td>
+                  <td>{{ surfboard.model }}</td>
+                  <td>{{ surfboard.style }}</td>
+                  <td>{{ surfboard.volume }}</td>
+                  <td>{{ surfboard.currently_available|yesno }}</td>
+                  <td>{{ surfboard.owner }}</td>
+                  {% if user.is_authenticated %}
+                  <td><a href="{% url 'surfboard_detail' surfboard.id %}">Detail</a></td>
+                  {% endif %}
+              </tr>
+              {% endfor %}
+          </tbody>
+      </table>
     </div>
 </main>
 
