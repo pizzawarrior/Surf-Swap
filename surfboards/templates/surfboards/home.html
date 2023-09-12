@@ -7,25 +7,30 @@
 
 {% block content %}
 <main>
-    <h1>Welcome to Surf Swap!</h1>
+
+    <div id="h1-shout">
+        <h1>Welcome to Surf Swap!</h1>
+    </div>
 
     <div class="list-grid">
         {% for surfboard in surfboards %}
-        <div>
-            <div class="board-title-info">
+            <div id="board-title-info">
+                {% if user.is_authenticated %}
                 <h3>
-                    {{ surfboard.brand }} - {{ surfboard.model }} - {{ surfboard.volume }}L
+                    <a href="{% url 'surfboard_detail' surfboard.id %}">{{ surfboard.brand }} - {{ surfboard.model }} - {{ surfboard.volume }}L</a>
                 </h3>
+                {% else %}
+                <h3>
+                {{ surfboard.brand }} - {{ surfboard.model }} - {{ surfboard.volume }}L
+                </h3>
+                {% endif %}
+                <img class="list-img" src="{{ surfboard.image }}"/>
             </div>
-            <img class="list-img" src="{{ surfboard.image }}"/>
-            {% if user.is_authenticated %}
+
+            <!-- Add a Reserve link here
             <div>
-                <h4>
-                    <a href="{% url 'surfboard_detail' surfboard.id %}">Detail</a>
-                </h4>
-            </div>
-        </div>
-            {% endif %}
+
+            </div> -->
         {% endfor %}
     </div>
 </main>

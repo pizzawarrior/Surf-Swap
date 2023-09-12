@@ -2,50 +2,61 @@
 {% load static %}
 
 {% block title %}
+
 <title>Surfboard Details</title>
 {% endblock title %}
 
 {% block content %}
 <section class="detail-page-body">
+
     <h1 id="detail-surfboard-title">{{ surfboard.brand }} - {{ surfboard.model }} - {{surfboard.volume}}L</h1>
-    {% if user == surfboard.owner %}
-    <p><a href="{% url 'edit_surfboard' surfboard.id %}">Update</a></p>
-    <p><a href="{% url 'delete_surfboard' surfboard.id %}">Delete</a></p>
-    {% endif %}
 
     <main>
-        <table>
-            <thead>
-                <tr>
-                    <th>Brand</th>
-                    <th>Model</th>
-                    <th>Style</th>
-                    <th>Length</th>
-                    <th>Width</th>
-                    <th>Thickness</th>
-                    <th>Volume</th>
-                    <th>Fin Style</th>
-                    <th>Fin System</th>
-                    <th>Currently Available</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>{{ surfboard.brand }}</td>
-                    <td>{{ surfboard.model }}</td>
-                    <td>{{ surfboard.style }}</td>
-                    <td>{{ surfboard.length }}</td>
-                    <td>{{ surfboard.width }}</td>
-                    <td>{{ surfboard.thickness }}</td>
-                    <td>{{ surfboard.volume }}</td>
-                    <td>{{ surfboard.fin_style }}</td>
-                    <td>{{ surfboard.fin_system }}</td>
-                    <td>{{ surfboard.currently_available|yesno }}</td>
-                </tr>
-            </tbody>
-        </table>
-        <p>{{ surfboard.description }}</p>
-        <img class="detail-img" src="{{ surfboard.image }}">
+        <div class="container">
+            <div>
+                <img class="detail-img" src="{{ surfboard.image }}">
+            </div>
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Brand</th>
+                            <th>Model</th>
+                            <th>Style</th>
+                            <th>Length</th>
+                            <th>Width</th>
+                            <th>Thickness</th>
+                            <th>Volume</th>
+                            <th>Fin Style</th>
+                            <th>Fin System</th>
+                            <th>Currently Available</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ surfboard.brand }}</td>
+                            <td>{{ surfboard.model }}</td>
+                            <td>{{ surfboard.style }}</td>
+                            <td>{{ surfboard.length }}</td>
+                            <td>{{ surfboard.width }}</td>
+                            <td>{{ surfboard.thickness }}</td>
+                            <td>{{ surfboard.volume }}</td>
+                            <td>{{ surfboard.fin_style }}</td>
+                            <td>{{ surfboard.fin_system }}</td>
+                            <td>{{ surfboard.currently_available|yesno }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                    <div class="board-description">
+                        {{ surfboard.description }}
+                    </div>
+            </div>
+        </div>
+        {% if user == surfboard.owner %}
+        <p><a href="{% url 'edit_surfboard' surfboard.id %}">Update</a></p>
+        <p><a href="{% url 'delete_surfboard' surfboard.id %}">Delete</a></p>
+        {% endif %}
+
     </main>
 
 

@@ -12,6 +12,9 @@
         <p>
             <a href="{% url 'create_surfboard' %}">Add a New Board</a>
         </p>
+        {% if surfboards.all|length == 0 %}
+        <h3>Your collection is empty!</h3>
+        {% else %}
         <table>
             <thead>
                 <tr>
@@ -33,6 +36,7 @@
                 {% endfor %}
             </tbody>
         </table>
+        {% endif %}
     </div>
 </main>
 
