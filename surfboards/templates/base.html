@@ -15,6 +15,8 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Space+Mono&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Shrikhand&display=swap" rel="stylesheet">
 
 
     </head>
@@ -35,8 +37,16 @@
                 </ul>
             </nav>
         </header>
+        <div class="surf-swap-flag">
+            <img src=" {% static 'images/surf_swap_flag.png' %}" alt="surf swap flag logo">
+        </div>
         {% block content %}
         {% endblock content %}
+        <footer>
+            <div class="surf-swap-globe">
+                <img src=" {% static 'images/surf_swap_globe.png' %}" alt="surf swap globe logo">
+            </div>
+        </footer>
     </body>
 
 </html>

@@ -1,14 +1,15 @@
 from django.contrib import admin
-from surfboards.models import Surfboard
+from surfboards.models import Surfboard, Reservation
 
 
-# @admin.register(Reservation)
-# class ReservationAdmin(admin.ModelAdmin):
-#     list_display= (
-#         'id',
-#         'surfboard',
-#         'owner',
-#         'borrower')
+@admin.register(Reservation)
+class ReservationAdmin(admin.ModelAdmin):
+    list_display= (
+        'id',
+        # 'surfboards.surfboard',
+        # 'surfboards.owner',
+        'borrower',
+        'type')
 
 
 # Show CURRENT reservations:

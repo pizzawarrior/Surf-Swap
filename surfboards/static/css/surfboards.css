@@ -1,6 +1,6 @@
 
 
-/* GLOBAL SETTINGS: */
+    /* GLOBAL SETTINGS: */
 a {
     /* Remove default link underlines */
     text-decoration: none;
@@ -10,7 +10,20 @@ body {
     margin: 0;
 }
 
-/* LIST PAGE */
+footer {
+    padding: 1rem;
+    background-color: rgb(197, 207, 207);
+    text-align: center;
+    margin-top: 8rem;
+    color: white;
+    font-size: 1.5rem;
+    font-family: 'Shrikhand', cursive;
+
+  }
+
+
+
+    /* HOME PAGE */
 
 header a {
     color: black;
@@ -34,25 +47,37 @@ nav {
     /* justify-content: space-around; */
     background-color: rgb(206, 226, 226);
     padding: .5rem;
-    margin-bottom: 6rem;
+    margin-bottom: 3rem;
     color: rgb(248, 248, 140);
     font-weight: bold;
 }
 
 
-#h1-shout h1 {
+/* #h1-shout h1 {
     text-align: center;
     font-size: 4rem;
     font-family: 'Caprasimo', cursive, 'Space Mono', monospace;
     padding-bottom: 3rem;
 
+} */
+
+.surf-swap-flag {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
 }
+
+.surf-swap-flag img {
+    height: 10rem;
+}
+
 
 .list-grid {
     display: grid;
     grid-template-columns: repeat(4, 25%);
     justify-content: space-around;
-    row-gap: 3rem;
+    row-gap: 4rem;
     text-align: center;
     margin: 3rem;
 }
@@ -60,6 +85,10 @@ nav {
 #board-title-info h3 a {
     color: rgb(57, 56, 66);
     font-family: 'Montserrat', sans-serif;
+}
+
+#board-title-info:hover h3 {
+    text-shadow: 1px 1px 2px rgb(180, 191, 198);
 }
 
 .list-img {
@@ -70,6 +99,19 @@ nav {
     padding-bottom: 20rem;
 }
 
+.surf-swap-globe {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .surf-swap-globe img {
+    height: 8rem;
+  }
+
+
+
+
   /* DETAIL PAGE */
 .detail-img {
     height: 40rem;
@@ -77,8 +119,12 @@ nav {
 }
 
 #detail-surfboard-title {
+    font-family: 'Caprasimo', cursive, 'Space Mono', monospace;
+    font-size: 3rem;
     text-align: center;
     padding-bottom: 3rem;
+    /* color: rgb(57, 56, 66); */
+
 }
 
 .container {
@@ -87,15 +133,170 @@ nav {
     margin: 3rem 10rem;
     justify-content: space-evenly;
     column-gap: 3rem;
-
-
-    /* column-gap: 5px; */
 }
 
 .board-description {
-    padding-top: 3rem;
+    padding-top: 2rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
 }
 
 .detail-img {
     float: left;
+}
+
+    /* DETAIL PAGE TABLE STYLING */
+.detail-table {
+    text-align: center;
+    border-collapse: collapse;
+    /* margin: 25px 0; */
+    font-size: 1em;
+    font-family: 'Montserrat', sans-serif;
+    min-width: 800px;
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.15);
+}
+
+.detail-table thead tr {
+    background-color: rgb(164, 182, 182);
+    color: #ffffff;
+
+}
+
+.detail-table thead th {
+    padding: 10px
+}
+
+/* .styled-table th, .styled-table td {
+    padding: 1rem;
+} */
+
+/* .styled-table tbody tr {
+    border-bottom: 3px solid rgb(159, 207, 72);
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #cbd5d7;
+} */
+
+/* END DETAIL PAGE TABLE STYLING */
+
+
+.crud-links a {
+    font-family: 'Caprasimo', cursive, 'Space Mono', monospace;
+    font-size: 1.2rem;
+    color: rgb(164, 182, 182);
+
+}
+
+.update, .reserve, .delete {
+    text-align: center;
+
+}
+
+.update:hover a {
+    color: rgb(57, 56, 66);
+}
+
+.delete:hover a {
+    color: rgb(57, 56, 66);
+}
+
+.reserve:hover a {
+    color: rgb(57, 56, 66);
+}
+
+#add-board:hover a {
+    color: rgb(57, 56, 66);
+}
+
+
+
+    /* MY LIST PAGE */
+
+ .my-list-page {
+    display: flex;
+    justify-content: center;
+}
+
+.my-list-h1 {
+    font-family: 'Caprasimo', cursive, 'Space Mono', monospace;
+    /* color: rgb(57, 56, 66); */
+    font-size: 3rem;
+    text-align: center;
+
+}
+
+#add-board a {
+    font-family: 'Caprasimo', cursive, 'Space Mono', monospace;
+    font-size: 1.2rem;
+    color: rgb(164, 182, 182);
+}
+
+#add-board:hover a {
+    color: rgb(57, 56, 66);
+}
+
+/* .detail-table {
+    border: 1px solid rgb(164, 182, 182);
+} */
+
+.detail-table img {
+    height: 150px;
+    padding: 5px 0;
+}
+
+.detail-table tbody tr:nth-of-type(even) {
+    background-color: #eff8f8;
+}
+
+.detail-table a {
+    font-weight: bold;
+    color: black;
+
+}
+
+
+
+        /* RESERVATIONS */
+
+.reserve-section {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    justify-content: center;
+    margin: 2rem 0;
+
+}
+
+.reserve-form h1 {
+    justify-content: center;
+}
+
+.reserve-form {
+    display: flex;
+    grid-column: 2/3;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.15);
+    padding: 2rem 0;
+}
+
+.res-img {
+    height: 20rem;
+    display:block
+}
+
+#res-surfboard-title {
+    color:rgb(164, 182, 182);
+    font-family: 'Caprasimo', cursive, 'Space Mono', monospace;
+    font-size: 3rem;
+    text-align: center;
+    margin-top: 4rem;
+}
+
+    /* RESERVATIONS LIST */
+
+.empty-list {
+    font-size: 2rem;
+    font-family: 'Bangers', cursive;
+    color:rgb(164, 182, 182);
 }

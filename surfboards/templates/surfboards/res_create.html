@@ -3,17 +3,27 @@
 
 {% block title %}
 
-<title>Surfboard Details</title>
+<title>Reserve</title>
 {% endblock title %}
 
 {% block content %}
 
-    <h1 id="detail-surfboard-title">{{ surfboard.brand }} - {{ surfboard.model }} - {{surfboard.volume}}L</h1>
-
     <main>
+        <div class="reserve-section">
+            <div class="reserve-form">
+                <form method="post">
+                    <h1>Reserve This Board</h1>
+                    {% csrf_token %}
+                    {{ form.as_p}}
+                    <button>Let's Go!</button>
+                </form>
+            </div>
+        </div>
+
+        <h1 id="res-surfboard-title">{{ surfboard.brand }} - {{ surfboard.model }} - {{surfboard.volume}}L</h1>
         <div class="container">
             <div>
-                <img class="detail-img" src="{{ surfboard.image }}">
+                <img class="res-img" src="{{ surfboard.image }}">
             </div>
             <div>
                 <table class="detail-table">
@@ -52,15 +62,6 @@
                     </div>
             </div>
         </div>
-        <div class="crud-links">
-            {% if user == surfboard.owner %}
-            <p class="update"><a href="{% url 'edit_surfboard' surfboard.id %}">Update</a></p>
-            <p class="delete"><a href="{% url 'delete_surfboard' surfboard.id %}">Delete</a></p>
-            {% else %}
-            <p class="reserve"><a href="{% url 'create_res' surfboard.id %}">Reserve</a></p>
-            {% endif %}
-        </div>
-
     </main>
 
 

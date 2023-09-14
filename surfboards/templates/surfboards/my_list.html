@@ -7,40 +7,82 @@
 
 {% block content %}
 <main>
-    <div>
-        <h1>My Surfboards</h1>
-        <p>
-            <a href="{% url 'create_surfboard' %}">Add a New Board</a>
-        </p>
-        {% if surfboards.all|length == 0 %}
-        <h3>Your collection is empty!</h3>
-        {% else %}
-        <table>
-            <thead>
-                <tr>
-                    <th>Brand</th>
-                    <th>Model</th>
-                    <th>Style</th>
-                    <th>Currently Available</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for surfboard in surfboards %}
-                <tr>
-                    <td>{{ surfboard.brand }}</td>
-                    <td>{{ surfboard.model }}</td>
-                    <td>{{ surfboard.style }}</td>
-                    <td><a href="{% url 'surfboard_detail' surfboard.id %}">Detail</a></td>
-                    <td>{{ surfboard.currently_available|yesno }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        {% endif %}
-    </div>
+    <section class="my-list-page">
+        <div>
+            <h1 class="my-list-h1">My Surfboards</h1>
+
+            {% if surfboards.all|length == 0 %}
+            <h3 class="detail-table">Your collection is empty!</h3>
+            {% else %}
+
+            <table class="detail-table">
+                <thead>
+                    <tr>
+                        <th>Brand</th>
+                        <th>Model</th>
+                        <th>Style</th>
+                        <th>Currently Available</th>
+                        <th>Image</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for surfboard in surfboards %}
+                    <tr>
+                        <td>{{ surfboard.brand }}</td>
+                        <td>{{ surfboard.model }}</td>
+                        <td>{{ surfboard.style }}</td>
+                        <td>{{ surfboard.currently_available|yesno }}</td>
+                        <td>
+                            <a href="{% url 'surfboard_detail' surfboard.id %}"><img class="list-img" src="{{ surfboard.image }}"/></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% endif %}
+            <p id="add-board">
+                <a href="{% url 'create_surfboard' %}">Add A New Board</a>
+            </p>
+        </div>
+    </section>
+
+    <!-- R E S E R V A T I O N S    S E C T I O N -->
+
+    <section class="my-list-page">
+        <div>
+            <h1 class="my-list-h1">My Reservations</h1>
+
+            {% if reservations.all|length == 0 %}
+            <h3 class="empty-list">You have no current reservations!</h3>
+            {% else %}
+
+            <table class="detail-table">
+                <thead>
+                    <tr>
+                        <th>Brand</th>
+                        <th>Model</th>
+                        <th>Style</th>
+                        <th>Res. Length</th>
+                        <th>Image</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for reservation in reservation.surfboards.all %}
+                    <tr>
+                        <td>{{ reservation.brand }}</td>
+                        <td>{{ reservation.model }}</td>
+                        <td>{{ reservation.style }}</td>
+                        <td>{{ reservation.created_on|date:'D, M d, Y' }}</td>
+                        <td>
+                            <a href="{% url 'surfboard_detail' surfboard.id %}"><img class="list-img" src="{{ reservation.image }}"/></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% endif %}
+        </div>
+    </section>
 </main>
-
-
-
 
 {% endblock content %}

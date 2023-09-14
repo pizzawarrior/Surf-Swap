@@ -8,10 +8,6 @@
 {% block content %}
 <main>
 
-    <div id="h1-shout">
-        <h1>Welcome to Surf Swap!</h1>
-    </div>
-
     <div class="list-grid">
         {% for surfboard in surfboards %}
             <div id="board-title-info">
@@ -24,13 +20,10 @@
                 {{ surfboard.brand }} - {{ surfboard.model }} - {{ surfboard.volume }}L
                 </h3>
                 {% endif %}
+                <a href="{% url 'surfboard_detail' surfboard.id %}">
                 <img class="list-img" src="{{ surfboard.image }}"/>
+                </a>
             </div>
-
-            <!-- Add a Reserve link here
-            <div>
-
-            </div> -->
         {% endfor %}
     </div>
 </main>

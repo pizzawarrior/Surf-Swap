@@ -1,8 +1,8 @@
 from django.shortcuts import render
-from surfboards.models import Surfboard
+from surfboards.models import Surfboard, Reservation
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
-from surfboards.forms import SurfboardForm
+from surfboards.forms import SurfboardForm, ReservationForm
 
 
 # Create surfboard:
@@ -73,3 +73,30 @@ def delete_surfboard(request, id):
     surfboard = get_object_or_404(Surfboard, id=id)
     surfboard.delete()
     return redirect('my_surfboards')
+
+
+# RESERVATIONS:::::
+
+@login_required(login_url="/accounts/login/")
+def create_res(request, id):
+    surfboard = get_object_or_404(Surfboard, id=id)
+    if request.method == 'POST':
+        form = ReservationForm(request.POST)
+        if form.is_valid():
+            reservation = form.save(False)
+            reservation.borrower = request.user
+            reservation.save()
+            return redirect(my_surfboards)
+    else:
+        form = ReservationForm()
+    context = {'form': form, 'surfboard': surfboard}
+    return render(request, 'surfboards/res_create.html', context)
+
+
+# Show list of MY reservations:
+def res_list(request):
+    reservation = Reservation.objects.filter(borrower=request.user)
+    surfboard = Surfboard.objects.all()
+    context = {'reservation': reservation, 'surfboard': surfboard}
+    # Do we want to add reservtions to the context?
+    return render(request, 'surfboards/my_list.html', context)

@@ -3,9 +3,23 @@ from django.contrib.auth.models import User
 
 
 class Reservation(models.Model):
+    # Reservation length:
+    Two_weeks = '2 weeks'
+    One_month = '1 month'
+    Other = 'Other'
+
+    RESERVATION_TYPE = [
+        (Two_weeks, '2 weeks'),
+        (One_month, '1 month'),
+        (Other, 'Other')
+    ]
+
+    created_on = models.DateTimeField(auto_now_add=True)
+    type = models.CharField('Reservation Length', max_length=100, blank=False, choices=RESERVATION_TYPE)
+    notes = models.TextField(max_length=1000, null=True)
     borrower = models.ForeignKey(
         User,
-        related_name='reservation',
+        related_name='reservations',
         on_delete=models.CASCADE
     )
 
