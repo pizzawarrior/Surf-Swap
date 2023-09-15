@@ -3,6 +3,7 @@ from surfboards.models import Surfboard, Reservation
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from surfboards.forms import SurfboardForm, ReservationForm
+from django.contrib.auth.models import User
 
 
 # Create surfboard:
@@ -29,13 +30,15 @@ def surfboard_list(request):
     return render(request, 'surfboards/home.html', context)
 
 
-# Show MY SURFBOARDS
+# Show MY SURFBOARDS & MY RESERVATIONS
 @login_required(login_url="/accounts/login/")
 def my_surfboards(request):
     surfboards = Surfboard.objects.filter(owner= request.user)
+    reservations = Reservation.objects.filter(borrower=request.user)
     context = {
+        'reservations': reservations,
         'surfboards': surfboards
-    }
+        }
     return render(request, 'surfboards/my_list.html', context)
 
 
@@ -85,18 +88,10 @@ def create_res(request, id):
         if form.is_valid():
             reservation = form.save(False)
             reservation.borrower = request.user
+            reservation.surfboard = surfboard
             reservation.save()
             return redirect(my_surfboards)
     else:
         form = ReservationForm()
     context = {'form': form, 'surfboard': surfboard}
     return render(request, 'surfboards/res_create.html', context)
-
-
-# Show list of MY reservations:
-def res_list(request):
-    reservation = Reservation.objects.filter(borrower=request.user)
-    surfboard = Surfboard.objects.all()
-    context = {'reservation': reservation, 'surfboard': surfboard}
-    # Do we want to add reservtions to the context?
-    return render(request, 'surfboards/my_list.html', context)

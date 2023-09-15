@@ -9,7 +9,9 @@ class ReservationAdmin(admin.ModelAdmin):
         # 'surfboards.surfboard',
         # 'surfboards.owner',
         'borrower',
-        'type')
+        'type',
+        'created_on',
+        )
 
 
 # Show CURRENT reservations:

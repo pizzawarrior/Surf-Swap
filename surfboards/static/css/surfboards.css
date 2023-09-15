@@ -295,6 +295,13 @@ nav {
 
     /* RESERVATIONS LIST */
 
+.my-res-page {
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+}
+
+
 .empty-list {
     font-size: 2rem;
     font-family: 'Bangers', cursive;

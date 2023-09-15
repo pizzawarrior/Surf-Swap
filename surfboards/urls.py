@@ -18,6 +18,6 @@ urlpatterns = [
     path('<int:id>/edit/', edit_surfboard, name='edit_surfboard'),
     path('<int:id>/delete/', delete_surfboard, name='delete_surfboard'),
     # Reservations:
-    path('<int:id>/create_res/', create_res, name='create_res'),
+    path('<int:id>create_res/', create_res, name='create_res'),
 
 ]

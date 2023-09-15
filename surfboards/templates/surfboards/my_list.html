@@ -48,11 +48,11 @@
 
     <!-- R E S E R V A T I O N S    S E C T I O N -->
 
-    <section class="my-list-page">
+    <section class="my-res-page">
         <div>
             <h1 class="my-list-h1">My Reservations</h1>
 
-            {% if reservations.all|length == 0 %}
+            {% if reservations|length == 0 %}
             <h3 class="empty-list">You have no current reservations!</h3>
             {% else %}
 
@@ -61,20 +61,20 @@
                     <tr>
                         <th>Brand</th>
                         <th>Model</th>
-                        <th>Style</th>
                         <th>Res. Length</th>
+                        <th>Res. Created On</th>
                         <th>Image</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for reservation in reservation.surfboards.all %}
+                    {% for reservation in reservations %}
                     <tr>
-                        <td>{{ reservation.brand }}</td>
-                        <td>{{ reservation.model }}</td>
-                        <td>{{ reservation.style }}</td>
+                        <td>{{ reservation.surfboard.brand }}</td>
+                        <td>{{ reservation.surfboard.model }}</td>
+                        <td>{{ reservation.surfboard.style }}</td>
                         <td>{{ reservation.created_on|date:'D, M d, Y' }}</td>
                         <td>
-                            <a href="{% url 'surfboard_detail' surfboard.id %}"><img class="list-img" src="{{ reservation.image }}"/></a>
+                            <a href="{% url 'surfboard_detail' reservation.surfboard.id %}"><img class="list-img" src="{{ reservation.surfboard.image }}"/></a>
                         </td>
                     </tr>
                     {% endfor %}

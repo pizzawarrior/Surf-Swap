@@ -2,27 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-class Reservation(models.Model):
-    # Reservation length:
-    Two_weeks = '2 weeks'
-    One_month = '1 month'
-    Other = 'Other'
-
-    RESERVATION_TYPE = [
-        (Two_weeks, '2 weeks'),
-        (One_month, '1 month'),
-        (Other, 'Other')
-    ]
-
-    created_on = models.DateTimeField(auto_now_add=True)
-    type = models.CharField('Reservation Length', max_length=100, blank=False, choices=RESERVATION_TYPE)
-    notes = models.TextField(max_length=1000, null=True)
-    borrower = models.ForeignKey(
-        User,
-        related_name='reservations',
-        on_delete=models.CASCADE
-    )
-
 
 class Surfboard(models.Model):
     # Board types:
@@ -115,11 +94,35 @@ class Surfboard(models.Model):
         related_name='surfboards',
         on_delete=models.CASCADE
     )
-    reservation = models.ForeignKey(
-        Reservation,
-        related_name='surfboards',
-        on_delete=models.CASCADE, null=True
-    )
 
     def __str__(self):
         return self.brand
+
+
+class Reservation(models.Model):
+    # Reservation length:
+    Two_weeks = '2 weeks'
+    One_month = '1 month'
+    Other = 'Other'
+
+    RESERVATION_TYPE = [
+        (Two_weeks, '2 weeks'),
+        (One_month, '1 month'),
+        (Other, 'Other')
+    ]
+
+    created_on = models.DateTimeField(auto_now_add=True)
+    type = models.CharField('Reservation Length', max_length=100, blank=False, choices=RESERVATION_TYPE)
+    notes = models.TextField(max_length=1000, null=True)
+    # Borrower should be user (NOT FOREIGN KEY)
+    borrower = models.ForeignKey(
+        User,
+        related_name='reservations',
+        on_delete=models.CASCADE
+    )
+    surfboard = models.ForeignKey(
+        'Surfboard',
+        related_name='surfboards',
+        on_delete=models.CASCADE,
+        null=True
+    )
