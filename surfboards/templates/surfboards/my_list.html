@@ -64,6 +64,7 @@
                         <th>Res. Length</th>
                         <th>Res. Created On</th>
                         <th>Image</th>
+                        <th>Update Reservation</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -71,10 +72,13 @@
                     <tr>
                         <td>{{ reservation.surfboard.brand }}</td>
                         <td>{{ reservation.surfboard.model }}</td>
-                        <td>{{ reservation.surfboard.style }}</td>
+                        <td>{{ reservation.type }}</td>
                         <td>{{ reservation.created_on|date:'D, M d, Y' }}</td>
                         <td>
                             <a href="{% url 'surfboard_detail' reservation.surfboard.id %}"><img class="list-img" src="{{ reservation.surfboard.image }}"/></a>
+                        </td>
+                        <td>
+                            <p class="update"><a href="{% url 'update_res' reservation.id %}">Update</a></p>
                         </td>
                     </tr>
                     {% endfor %}

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  <title>Edit Reservation</title>
+{% endblock title %}
+
+{% block content %}
+  <div>
+    <h1>Edit This Reservation</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p}}
+          <input type="submit" value="Update">
+        </form>
+        <p class="delete"><a href="{% url 'delete_res' reservation.id %}">Close Reservation</a></p>
+    </div>
+
+{% endblock content %}

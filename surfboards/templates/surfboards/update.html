@@ -13,5 +13,6 @@
             {{ form.as_p}}
           <input type="submit" value="Update">
         </form>
+        <p class="delete"><a href="{% url 'delete_surfboard' surfboard.id %}">Delete</a></p>
     </div>
 {% endblock content %}

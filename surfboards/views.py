@@ -57,7 +57,7 @@ def surfboard_detail(request, id):
 def edit_surfboard(request, id):
     surfboard = get_object_or_404(Surfboard, id=id)
     if request.method == 'POST':
-        form = SurfboardForm(request.POST, instance = surfboard)
+        form = SurfboardForm(request.POST, instance=surfboard)
         if form.is_valid():
             form.save()
             return redirect('surfboard_detail', id=id)
@@ -70,12 +70,25 @@ def edit_surfboard(request, id):
     return render(request, 'surfboards/update.html', context)
 
 
+# # Delete surfboard
+# @login_required(login_url="/accounts/login/")
+# def delete_surfboard(request, id):
+#     surfboard = get_object_or_404(Surfboard, id=id)
+#     surfboard.delete()
+#     return redirect('my_surfboards')
+
+
 # Delete surfboard
 @login_required(login_url="/accounts/login/")
 def delete_surfboard(request, id):
     surfboard = get_object_or_404(Surfboard, id=id)
-    surfboard.delete()
-    return redirect('my_surfboards')
+    if request.method == 'POST':
+        surfboard.delete()
+        return redirect('my_surfboards')
+    context = {
+        'surfboard': surfboard,
+    }
+    return render(request,'surfboards/delete.html', context)
 
 
 # RESERVATIONS:::::
@@ -90,8 +103,37 @@ def create_res(request, id):
             reservation.borrower = request.user
             reservation.surfboard = surfboard
             reservation.save()
-            return redirect(my_surfboards)
+            return redirect('my_surfboards')
     else:
         form = ReservationForm()
     context = {'form': form, 'surfboard': surfboard}
     return render(request, 'surfboards/res_create.html', context)
+
+
+@login_required(login_url="/accounts/login/")
+def update_res(request, id):
+    reservation = get_object_or_404(Reservation, id=id)
+    if request.method == 'POST':
+        form = ReservationForm(request.POST, instance = reservation)
+        if form.is_valid():
+            reservation.borrower = request.user
+            # reservation.surfboard = surfboard
+            form.save()
+            return redirect('my_surfboards')
+    else:
+        form = ReservationForm(instance=reservation)
+    context = {'form': form, 'reservation': reservation}
+    return render(request, 'surfboards/res_update.html', context)
+
+
+# Delete reservation (Close Reservation)
+@login_required(login_url="/accounts/login/")
+def delete_res(request, id):
+    reservation = get_object_or_404(Reservation, id=id)
+    if request.method == 'POST':
+        reservation.delete()
+        return redirect('my_surfboards')
+    context = {
+        'reservation': reservation,
+    }
+    return render(request,'surfboards/res_delete.html', context)
