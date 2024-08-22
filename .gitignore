@@ -1,1 +1,4 @@
 scratch_paper.txt
+.venv
+settings.py
+db.sqlite3
