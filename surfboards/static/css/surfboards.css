@@ -1,8 +1,5 @@
-
-
     /* GLOBAL SETTINGS: */
 a {
-    /* Remove default link underlines */
     text-decoration: none;
   }
 
@@ -21,10 +18,7 @@ footer {
 
   }
 
-
-
     /* HOME PAGE */
-
 header a {
     color: black;
     font-family: 'Montserrat', sans-serif;
@@ -42,24 +36,12 @@ nav li {
 
 nav {
     display: grid;
-    /* grid-template-columns: repeat(6, 1fr);
-    grid-column-start: 2; */
-    /* justify-content: space-around; */
     background-color: rgb(206, 226, 226);
     padding: .5rem;
     margin-bottom: 3rem;
     color: rgb(248, 248, 140);
     font-weight: bold;
 }
-
-
-/* #h1-shout h1 {
-    text-align: center;
-    font-size: 4rem;
-    font-family: 'Caprasimo', cursive, 'Space Mono', monospace;
-    padding-bottom: 3rem;
-
-} */
 
 .surf-swap-flag {
     display: flex;
@@ -71,7 +53,6 @@ nav {
 .surf-swap-flag img {
     height: 10rem;
 }
-
 
 .list-grid {
     display: grid;
@@ -109,9 +90,6 @@ nav {
     height: 8rem;
   }
 
-
-
-
   /* DETAIL PAGE */
 .detail-img {
     height: 40rem;
@@ -123,8 +101,6 @@ nav {
     font-size: 3rem;
     text-align: center;
     padding-bottom: 3rem;
-    /* color: rgb(57, 56, 66); */
-
 }
 
 .container {
@@ -149,7 +125,6 @@ nav {
 .detail-table {
     text-align: center;
     border-collapse: collapse;
-    /* margin: 25px 0; */
     font-size: 1em;
     font-family: 'Montserrat', sans-serif;
     min-width: 800px;
@@ -165,21 +140,6 @@ nav {
 .detail-table thead th {
     padding: 10px
 }
-
-/* .styled-table th, .styled-table td {
-    padding: 1rem;
-} */
-
-/* .styled-table tbody tr {
-    border-bottom: 3px solid rgb(159, 207, 72);
-}
-
-.styled-table tbody tr:nth-of-type(even) {
-    background-color: #cbd5d7;
-} */
-
-/* END DETAIL PAGE TABLE STYLING */
-
 
 .crud-links a {
     font-family: 'Caprasimo', cursive, 'Space Mono', monospace;
@@ -209,10 +169,7 @@ nav {
     color: rgb(57, 56, 66);
 }
 
-
-
     /* MY LIST PAGE */
-
  .my-list-page {
     display: flex;
     justify-content: center;
@@ -220,7 +177,6 @@ nav {
 
 .my-list-h1 {
     font-family: 'Caprasimo', cursive, 'Space Mono', monospace;
-    /* color: rgb(57, 56, 66); */
     font-size: 3rem;
     text-align: center;
 
@@ -235,10 +191,6 @@ nav {
 #add-board:hover a {
     color: rgb(57, 56, 66);
 }
-
-/* .detail-table {
-    border: 1px solid rgb(164, 182, 182);
-} */
 
 .detail-table img {
     height: 150px;
@@ -255,10 +207,7 @@ nav {
 
 }
 
-
-
-        /* RESERVATIONS */
-
+    /* RESERVATIONS */
 .reserve-section {
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
@@ -294,13 +243,11 @@ nav {
 }
 
     /* RESERVATIONS LIST */
-
 .my-res-page {
     display: flex;
     justify-content: center;
     margin-top: 3rem;
 }
-
 
 .empty-list {
     font-size: 2rem;
