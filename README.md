@@ -1,7 +1,8 @@
 ## Welcome to Surf Swap
 
 ### Problem Statement:
-Surfboards are expensive, and rental options are bleak. There aren't many options to try a surfboard before you commit to buying one, which is a large commitment of 
+1. Surfboards are expensive, and rental options are bleak.
+2. There aren't many options to try a surfboard before commiting to buying one, which is upwards of $750 each time!
 
 ### Our Solution
 * Try before you buy
@@ -15,6 +16,7 @@ Surfboards are expensive, and rental options are bleak. There aren't many option
 - SQLite database
 
 To run the project locally:
+- activate your virtual environment
 - `python manage.py runserver`
 - open in browser at localhost:8000
 
