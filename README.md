@@ -22,3 +22,9 @@ To run the project locally:
 
 To access the admin interface:
 - localhost:8000/admin
+
+### Entity Relationship Diagram
+![Surf Swap ERD](https://github.com/user-attachments/assets/3f6bc02e-0be6-40f0-a867-074ce15b2974)
+
+### Endpoints
+
