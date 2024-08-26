@@ -1,12 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from surfboards.models import Surfboard, Reservation
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, get_object_or_404, redirect
 from surfboards.forms import SurfboardForm, ReservationForm
-from django.contrib.auth.models import User
 
 
-# Create surfboard:
 @login_required(login_url="/accounts/login/")
 def create_surfboard(request):
     if request.method == "POST":
@@ -30,10 +27,9 @@ def surfboard_list(request):
     return render(request, 'surfboards/home.html', context)
 
 
-# Show MY SURFBOARDS & MY RESERVATIONS
 @login_required(login_url="/accounts/login/")
 def my_surfboards(request):
-    surfboards = Surfboard.objects.filter(owner= request.user)
+    surfboards = Surfboard.objects.filter(owner=request.user)
     reservations = Reservation.objects.filter(borrower=request.user)
     context = {
         'reservations': reservations,
@@ -42,7 +38,6 @@ def my_surfboards(request):
     return render(request, 'surfboards/my_list.html', context)
 
 
-# Show surfboard detail: (login required)
 @login_required(login_url="/accounts/login/")
 def surfboard_detail(request, id):
     surfboard = get_object_or_404(Surfboard, id=id)
@@ -52,7 +47,6 @@ def surfboard_detail(request, id):
     return render(request, 'surfboards/detail.html', context)
 
 
-# Update surfboard details:
 @login_required(login_url="/accounts/login/")
 def edit_surfboard(request, id):
     surfboard = get_object_or_404(Surfboard, id=id)
@@ -62,7 +56,7 @@ def edit_surfboard(request, id):
             form.save()
             return redirect('surfboard_detail', id=id)
     else:
-        form = SurfboardForm(instance = surfboard)
+        form = SurfboardForm(instance=surfboard)
     context = {
         'surfboard': surfboard,
         'form': form,
@@ -70,15 +64,6 @@ def edit_surfboard(request, id):
     return render(request, 'surfboards/update.html', context)
 
 
-# # Delete surfboard
-# @login_required(login_url="/accounts/login/")
-# def delete_surfboard(request, id):
-#     surfboard = get_object_or_404(Surfboard, id=id)
-#     surfboard.delete()
-#     return redirect('my_surfboards')
-
-
-# Delete surfboard
 @login_required(login_url="/accounts/login/")
 def delete_surfboard(request, id):
     surfboard = get_object_or_404(Surfboard, id=id)
@@ -88,7 +73,7 @@ def delete_surfboard(request, id):
     context = {
         'surfboard': surfboard,
     }
-    return render(request,'surfboards/delete.html', context)
+    return render(request, 'surfboards/delete.html', context)
 
 
 # RESERVATIONS:::::
@@ -114,7 +99,7 @@ def create_res(request, id):
 def update_res(request, id):
     reservation = get_object_or_404(Reservation, id=id)
     if request.method == 'POST':
-        form = ReservationForm(request.POST, instance = reservation)
+        form = ReservationForm(request.POST, instance=reservation)
         if form.is_valid():
             reservation.borrower = request.user
             # reservation.surfboard = surfboard
@@ -126,7 +111,6 @@ def update_res(request, id):
     return render(request, 'surfboards/res_update.html', context)
 
 
-# Delete reservation (Close Reservation)
 @login_required(login_url="/accounts/login/")
 def delete_res(request, id):
     reservation = get_object_or_404(Reservation, id=id)
@@ -136,4 +120,4 @@ def delete_res(request, id):
     context = {
         'reservation': reservation,
     }
-    return render(request,'surfboards/res_delete.html', context)
+    return render(request, 'surfboards/res_delete.html', context)
