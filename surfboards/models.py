@@ -4,7 +4,6 @@ from .model_choices import BOARD_TYPES, TAIL_STYLE, FIN_STYLE, FIN_SYSTEM
 
 
 class Surfboard(models.Model):
-
     brand = models.CharField(max_length=100)
     model = models.CharField(max_length=100, null=True)
     type = models.CharField('Board Type', max_length=20, blank=False, choices=BOARD_TYPES)
