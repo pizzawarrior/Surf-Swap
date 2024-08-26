@@ -27,4 +27,4 @@ To access the admin interface:
 ![Surf Swap ERD](https://github.com/user-attachments/assets/3f6bc02e-0be6-40f0-a867-074ce15b2974)
 
 ### Endpoints
-
+<img width="897" alt="Screenshot 2024-08-26 at 1 49 46 PM" src="https://github.com/user-attachments/assets/c09c3fd3-6439-4f6c-8062-f804ae7512a4">
